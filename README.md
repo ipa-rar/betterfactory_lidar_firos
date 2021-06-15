@@ -1,3 +1,13 @@
+## Installation on Raspberry Pi
+```
+mkdir -p catkin_ws/src
+cd catkin_ws/src
+git clone --recursive https://github.com/ipa-rar/betterfactory_lidar_firos.git
+cd ~/catkin_ws
+catkin_make
+source /devel/setup.bash
+
+```
 ## Settting up the physical sick tim 571 Lidar
 - Install the [SOPAS tool](https://www.sick.com/ag/en/sopas-engineering-tool/p/p367244) from the SICK Sensor Intelligence to configure the LIDAR IP address
 - Inorder to identify the LIDAR in windows 10
@@ -48,27 +58,18 @@
     {}
     ```
 ## Starting up the entire system
+ - Launch the Orion Context Broker(OCB) in the docker container with port `1026` exposed.
+    ```
+    - sudo docker-compose up
+    ```
 - Bring up the hardware driver nodes and other application nodes before running the firos node. Firos will not transform any new topics that arrive after launching firos node.
     ```
     - sudo ifconfig eth0 192.168.1.121 netmask 255.255.255.0
     ```
     ```
-    - roslaunch sick_scan sick_tim_5xx.launch hostname:=192.168.1.1
+    - roslaunch betterfactory_bringup firos_bringup.launch
     ```
-    ```
-    - rosrun tf static_transform_publisher 0 0 0 0 0 0 1 map cloud 10
-    ```
- - Launch the Orion Context Broker(OCB) in the docker container with port `1026` exposed.
-    ```
-    - sudo service docker start
-    ```
-    ```
-         - sudo docker-compose up
-    ```
-- Finally, launch the firos node.
-    ```
-    - roslaunch firos firos.launch
-    ```
+
 ## Usage
 Once you have started up the entire system you can check the contents in the OCB. You can do this by using terminal, postman and web-browser. Web browser is most convenient way as it pretty format the json contents.
 - To list all the available endpoints
@@ -93,7 +94,16 @@ Once you have started up the entire system you can check the contents in the OCB
     ```
     http://localhost:1026/v2/types
     ```
-## Docker launch
+- To check the status of FIROS
+    ```
+    http://localhost:10100
+
+- To list the topics subscribed/published by FIROS
+    ```
+    http://localhost:10100/topics
+
+## Docker container launch
+**Work In Progress!**
 ```
 docker network create finet --subnet=19.168.1.123/16 -d ipvlan
 ```
