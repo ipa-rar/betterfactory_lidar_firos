@@ -1,0 +1,13 @@
+<launch>
+
+  <arg name="tf_node" default="tf" />
+
+  <include file="$(find sick_scan)/launch/sick_tim_5xx.launch"/>
+  <arg name="hostname" default="192.168.1.1" />
+
+  <node name="$(arg tf_node)" pkg="tf" type="static_transform_publisher" args="0 0 0 0 0 0 1 map cloud 100">
+  </node>
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find betterfactory_bringup)/config/visualization.rviz">
+  </node>
+
+</launch>
