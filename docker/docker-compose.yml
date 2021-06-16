@@ -1,0 +1,50 @@
+version: "3"
+services:
+
+  firos:
+    build:
+      context: ".."
+      dockerfile: docker/Dockerfile
+    container_name: firos
+    depends_on:
+      - orion
+      - rosmaster
+    environment:
+      - PYTHONUNBUFFERED=1
+      - "ROS_MASTER_URI=http://rosmaster:11311"
+    image: "firos:localbuild"
+    ports:
+      - "10100:10100"
+    volumes:
+      - "./docker-config/topics.json:/catkin_ws/src/betterfactory_lidar_firos/firos/config/topics.json"
+      - "./docker-config/whitelist.json:/catkin_ws/src/betterfactory_lidar_firos/firos/config/whitelist.json"
+      - "./docker-config/config.json:/catkin_ws/src/betterfactory_lidar_firos/firos/config/config.json"
+
+  mongo:
+    command: "--nojournal"
+    container_name: mongo
+    image: "mongo:4.4"
+
+  orion:
+    command: "-dbhost mongo"
+    container_name: orion
+    hostname: orion
+    image: fiware/orion
+    links:
+      - mongo
+    ports:
+      - "1026:1026"
+
+  rosmaster:
+    command:
+      - roscore
+    container_name: rosmaster
+    hostname: rosmaster
+    image: "ros:melodic-ros-core"
+    ports:
+      - "11311:11311"
+
+networks:
+  finet:
+    name: finet
+    driver: bridge
