@@ -22,6 +22,7 @@ source /devel/setup.bash
 - `betterfactory_bringup` contains the launch files and configuration for launching the firos, tf and laserscanner.
 - `docker` contains the docker related files to dockerize the application
 - `firos` is used to transform ROS msgs to NGSIv2 message type. Here we define the configurations about the topics that needs to be publisher or subscribed.
+- `orion_context_broker` is the context broker that is used for sending the context information. This contains a docker file of the orion and mongodb.
 - `sick_scan` is the official ros driver for sick_tim_5xx laser scanner. This can be replaced by the new lidar driver. 
 
 ## Starting up the entire system
