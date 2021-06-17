@@ -64,11 +64,19 @@ source /devel/setup.bash
     ```
 - Bring up the hardware driver nodes and other application nodes before running the firos node. Firos will not transform any new topics that arrive after launching firos node.
     ```
-    - sudo ifconfig eth0 192.168.1.121 netmask 255.255.255.0
+    sudo ifconfig eth0 192.168.1.121 netmask 255.255.255.0
     ```
     ```
     - roslaunch betterfactory_bringup firos_bringup.launch
     ```
+
+## Demo of Sub and Pub
+```
+    roscore
+    rosrun tf static_transform_publisher 0 0 0 0 0 0 1 map cloud 10
+    rosrun firos core.py --conf ./lidar_config
+    rosrun firos core.py --conf ./lidar_reverse_config -P 10101 --ros-node-name firos2
+```
 
 ## Usage
 Once you have started up the entire system you can check the contents in the OCB. You can do this by using terminal, postman and web-browser. Web browser is most convenient way as it pretty format the json contents.
