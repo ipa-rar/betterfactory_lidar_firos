@@ -1,29 +1,24 @@
-## Installation steps
+## Installation
 ```
-mkdir -p catkin_ws/src
-cd catkin_ws/src
-git clone --recursive https://github.com/ipa-rar/betterfactory_lidar_firos.git
-cd ~/catkin_ws
-catkin_make
-source /devel/setup.bash
+# Create a new ROS workspace
+mkdir -p catkin_ws/src && cd catkin_ws/src
+
+# Download the repository
+git https://github.com/ipa-rar/betterfactory_lidar_firos.git
+
+# Download dependencies
+wstool init ~/catkin_ws/src/betterfactory_lidar_firos
+wstool merge ~/catkin_ws/src/betterfactory_lidar_firos/betterfactory_lidar_firos.rosinstall 
+wstool up
+
+# Install dependencies 
+rosdep update && rosdep install --from-paths ~/snp_demo_ws/src --ignore-src
+
+
+cd ~/catkin_ws && catkin_make
+source ~/catkin_ws/devel/setup.bash
 
 ```
-## About this repository
-```
-.
-├── betterfactory_bringup
-├── docker
-├── firos
-├── orion_context_broker
-├── README.md
-└── sick_scan
-
-```
-- `betterfactory_bringup` contains the launch files and configuration for launching the firos, tf and laserscanner.
-- `docker` contains the docker related files to dockerize the application
-- `firos` is used to transform ROS msgs to NGSIv2 message type. Here we define the configurations about the topics that needs to be publisher or subscribed.
-- `orion_context_broker` is the context broker that is used for sending the context information. This contains a docker file of the orion and mongodb.
-- `sick_scan` is the official ros driver for sick_tim_5xx laser scanner. This can be replaced by the new lidar driver. 
 
 ## Starting up the entire system
  - Launch the Orion Context Broker(OCB) in the docker container with port `1026` exposed.
