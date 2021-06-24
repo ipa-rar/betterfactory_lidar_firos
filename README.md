@@ -7,9 +7,11 @@ mkdir -p catkin_ws/src && cd catkin_ws/src
 git clone https://github.com/ipa-rar/betterfactory_lidar_firos.git
 
 # Download dependencies
+cd betterfactory_lidar_firos
 wstool init ~/catkin_ws/src/betterfactory_lidar_firos
 wstool merge ~/catkin_ws/src/betterfactory_lidar_firos/betterfactory_lidar_firos.rosinstall 
 wstool up
+cd ..
 
 # Install dependencies 
 rosdep update && rosdep install --from-paths ~/snp_demo_ws/src --ignore-src
