@@ -4,7 +4,7 @@
 mkdir -p catkin_ws/src && cd catkin_ws/src
 
 # Download the repository
-git https://github.com/ipa-rar/betterfactory_lidar_firos.git
+git clone https://github.com/ipa-rar/betterfactory_lidar_firos.git
 
 # Download dependencies
 wstool init ~/catkin_ws/src/betterfactory_lidar_firos
