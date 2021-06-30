@@ -1,3 +1,3 @@
 # Main ROS packages
-- git: {local-name: sick_scan, uri: 'https://github.com/ipa-rar/sick_scan.git', version: f54dc9d37576aa7104f36950c95f38a09f9f381d}
+- git: {local-name: rplidar_ros, uri: 'https://github.com/Slamtec/rplidar_ros.git', version: 4f899e670bec2c9e1f26b0969f2de36d23618ef3}
 - git: {local-name: firos, uri: 'https://github.com/ipa-rar/firos.git', version: 09bc9bb35897a5e810b829eb2f9a187c288f46ab}

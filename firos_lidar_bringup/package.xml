@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <package format="2">
-  <name>betterfactory_bringup</name>
+  <name>firos_lidar_bringup</name>
   <version>0.0.0</version>
-  <description>The betterfactory_bringup package</description>
+  <description>The firos_lidar_bringup package</description>
 
  <maintainer email="ragesh.ramachandran@ipa.fraunhofer.de">Ragesh</maintainer>
   <license>TODO</license>

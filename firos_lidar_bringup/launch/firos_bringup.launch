@@ -1,5 +1,5 @@
 <launch>
-  <arg name="config_path" default="$(find firos)/lidar_config" />
+  <arg name="config_path" default="$(find firos_lidar_bringup)/config/" />
 
   <arg name="firos_node" default="firos" />
   <arg name="lidar_node" default="sick_scan" />

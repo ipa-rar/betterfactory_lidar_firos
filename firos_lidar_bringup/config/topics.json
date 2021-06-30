@@ -1,0 +1,4 @@
+{
+    "/scan": ["sensor_msgs/LaserScan", "subscriber"],
+    "/tf": ["tf2_msgs/TFMessage", "subscriber"]
+}
