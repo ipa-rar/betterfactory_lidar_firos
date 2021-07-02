@@ -6,5 +6,7 @@
   <include file="$(find rplidar_ros)/launch/rplidar.launch" />
   <node name="$(arg tf_node)" pkg="tf" type="static_transform_publisher" args="0 0 0 0 0 0 1 map cloud 100">
   </node>
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find betterfactory_bringup)/config/visualization.rviz">
+  </node>
 
 </launch>
