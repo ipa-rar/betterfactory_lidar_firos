@@ -1,16 +1,12 @@
 <launch>
   <arg name="config_path" default="$(find firos_lidar_bringup)/config/" />
   <arg name="firos_node" default="firos" />
-  <!-- <arg name="lidar_node" default="rplidar_ros" />
-  <arg name="tf_node" default="tf" /> -->
+  <arg name="node_name" default="node_n"/>
 
-  <!-- <include file="$(find rplidar_ros)/launch/rplidar.launch" />
-
-  <node name="$(arg tf_node)" pkg="tf" type="static_transform_publisher" args="0 0 0 0 0 0 1 map cloud 100">
-  </node> -->
-
+  <group ns="$(arg node_name)">
   <node name="$(arg firos_node)" pkg="firos" type="core.py" output="screen" args="--conf $(arg config_path)">
     <param name="config_path" value="$(arg config_path)" />
   </node>
+  </group>
 
 </launch>

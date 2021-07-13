@@ -2,9 +2,14 @@
 
   <arg name="tf_node" default="tf" />
   <arg name="lidar_node" default="rplidar_ros" />
+  <arg name="node_name" default="node_n"/>
 
+  <group ns="$(arg node_name)">
   <include file="$(find rplidar_ros)/launch/rplidar.launch" />
-  <node name="$(arg tf_node)" pkg="tf" type="static_transform_publisher" args="0 0 0 0 0 0 1 map cloud 100">
+  <param name="rplidarNode/frame_id"  type="string" value="$(arg node_name)" />
+  <node name="$(arg tf_node)" pkg="tf" type="static_transform_publisher" args="0 0 0 0 0 0 1 map $(arg node_name) 100">
   </node>
+  </group>
 
 </launch>
+
